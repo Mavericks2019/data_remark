@@ -1,0 +1,12 @@
+before_script:
+    - pwd
+stages:
+    - test
+    - test123
+build:
+    image: shijiannan/centos:centos_v4
+    stage: test
+    script:
+        - pwd
+    tags:
+        - test
