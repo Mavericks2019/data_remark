@@ -43,6 +43,13 @@ class LabelResult(Document):  # 标注结果库
     attribute_list = ListField()  # 标签列表
 
 
+class TaskType(Document):  # 任务类型库
+    task_type = StringField(unique=True)  # 任务类型
+    task_label_content = ListField()
+    image_attribute = ListField()
+    content_attribute = ListField()
+
+
 if __name__ == "__main__":
     t = Task(task_name="test10", user_name="jiannan.shi", task_labeld="to_label", task_type="test",
              task_assigned_date="2019-03-04", task_image_number=10, task_resigned_count=5, task_status=1,

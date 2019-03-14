@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from app.utils.common_tools import common_describer,remark_describer
+from app.utils.common_tools import common_describer, remark_describer, remark_get_describer
 from app.utils.logger import get_logger
 from app.controller.remark_manager import RemarkManager
 
@@ -16,7 +16,7 @@ def save_property_result():
 
 
 @remark_views.route("/property/get", methods=["POST"])
-@remark_describer
+@remark_get_describer
 def get_property_result():
     data = request.json
     return RemarkManager.get_remark_result(data)

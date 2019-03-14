@@ -54,3 +54,10 @@ def give_up_task():
 def get_task_check_pending():
     data = request.json
     return TaskManager.get_task_check_pending(data)
+
+
+@task_views.route("/get_task_type_details", methods=["POST"])
+@task_describer
+def get_task_type_details():
+    data = request.json
+    return TaskManager.get_task_type_details(data)

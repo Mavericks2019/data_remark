@@ -224,3 +224,13 @@ class MongodbManager:
         task.assessor_name = user_name if current_user_type == 1 else ""
         MongodbManager.update_task_date(task_name)
         task.save()
+
+    @staticmethod
+    def get_task_type_details(task_type):
+        task_config = Task.objects(task_type=task_type)[0]
+        return task_config
+
+    @staticmethod
+    def get_task_by_task_name(task_name):
+        task = Task.objects(task_name=task_name)[0]
+        return task

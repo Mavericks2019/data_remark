@@ -38,11 +38,12 @@ class RemarkManager:
         try:
             log.info(f"{RemarkManager.__name__}:{RemarkManager.get_remark_result.__name__}{task_name}尝试获取标注结果")
             result = MongodbManager.get_remark_result_by_task(data)
+            current_task = MongodbManager.get_task_by_task_name(task_name)
             result = result._data
             return {"task_name": data["task_name"],
                     "image_url": data["image_name"],
-                    "user_name": "jiannan.shi",
-                    "task_type": "test",
+                    "user_name": current_task["user_name"],
+                    "task_type": current_task["task_type"],
                     "points_list":  result["points_list"] if result.get("points_list") else [],
                     "attribute_list": result["attribute_list"] if result.get("attribute_list") else [],
                     "object_list": result["object_list"] if result.get("object_list") else [],

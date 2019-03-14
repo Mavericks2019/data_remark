@@ -87,3 +87,22 @@ class TaskManager:
         except Exception as e:
             log.error(f"{TaskManager.give_up_task.__name__}用户:{user}尝试查询所有待审核任务失败，错误信息:{str(e)}")
             raise Exception(str(e))
+
+    @staticmethod
+    def get_task_type_details(data):
+        """
+        :param data: {"task_type": "xxx"}
+        :return:
+        """
+        task_type = data["task_type"]
+        log.info(f"{__name__}:{TaskManager.__name__}:{TaskManager.get_task_type_details.__name__}获取任务配置")
+        try:
+            task_config = MongodbManager.get_task_type_details(task_type)
+            return {"task_type": task_config["task_type"],
+                    "task_label_content": task_config["task_label_content"],
+                    "image_attribute": task_config["image_attribute"],
+                    "content_attribute": task_config["content_attribute"]}
+        except Exception as e:
+            log.error(f"{__name__}:{TaskManager.__name__}:{TaskManager.get_task_type_details.__name__}"
+                        f"获取任务配置失败，错误信息：{str(e)}")
+            raise Exception(f"获取任务配置失败，错误信息：{str(e)}")

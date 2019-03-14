@@ -116,3 +116,21 @@ def remark_describer(func):
         response.headers["Content-Type"] = "application/json"
         return response
     return wrapper
+
+
+def remark_get_describer(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        try:
+            # result:
+            # {"task_name": "xxx", "task_type": "xxx", "task_available_count_by_type": 20, "task_create_date": "xxxxx"}
+            result = func(*args, **kwargs)
+        except Exception as e:
+            result = {}
+            final_data = json.dumps(result)
+        else:
+            final_data = json.dumps(result)
+        response = make_response(final_data)
+        response.headers["Content-Type"] = "application/json"
+        return response
+    return wrapper

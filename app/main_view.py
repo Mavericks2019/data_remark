@@ -18,4 +18,3 @@ if __name__ == "__main__":
     log.info("系统启动")
     connection = MongoConnection.init_connections()  # mongo数据库连接
     main_app.run(host='0.0.0.0', port=SYSTEM_PORT)
-
